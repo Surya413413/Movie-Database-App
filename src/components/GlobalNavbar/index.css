@@ -1,0 +1,13 @@
+.nav-container {
+  background-color: darkblue;
+  height: 15vh;
+  color: white;
+  display: flex;
+}
+.unorder-list-container {
+  color: white;
+}
+.list-links {
+  list-style-type: none;
+  color: white;
+}

@@ -1,0 +1,8 @@
+.popular-container {
+  background-color: white;
+  background-size: cover;
+  height: 400vh;
+  border: 2px solid red;
+  display: flex;
+  flex-wrap: wrap;
+}
