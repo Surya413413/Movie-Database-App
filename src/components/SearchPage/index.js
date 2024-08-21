@@ -1,13 +1,15 @@
 import Loader from 'react-loader-spinner'
 
 import MoviePage from '../MoviePage'
-import NavBar from '../GlobalNavBar'
+import GlobalNavbar from '../GlobalNavbar'
+import Pagination from '../Pagination'
+import MovieContext from '../../context/MovieContext'
 
 import './index.css'
 
 const SearchPage = () => {
   const renderEmptyView = () => (
-    <div className="empty-view-container">
+    <div>
       <h1>No results found.</h1>
       <p>Don not get worried, Try to search again.</p>
     </div>
@@ -29,13 +31,13 @@ const SearchPage = () => {
   }
 
   const renderLoadingView = () => (
-    <div className="loader-container">
-      <Loader type="TailSpin" color="#032541" />
+    <div>
+      <Loader type="TailSpin" />
     </div>
   )
 
   const renderSearchResultViews = value => {
-    const {searchResponse, apiStatus} = value
+    const {apiStatus, searchQuery, searchResponse} = value
 
     switch (apiStatus) {
       case 'IN_PROGRESS':
@@ -48,10 +50,22 @@ const SearchPage = () => {
   }
 
   return (
-    <>
-      <NavBar />
-      <div className="route-page-body">{renderSearchResultViews(value)}</div>
-    </>
+    <MovieContext.Consumer>
+      {value => {
+        const {searchResponse, searchQuery} = value
+
+        return (
+          <>
+            <GlobalNavbar />
+            <div>{renderSearchResultViews(value)}</div>
+            <Pagination
+              totalPages={searchResponse.totalPages}
+              apiCallback={searchQuery}
+            />
+          </>
+        )
+      }}
+    </MovieContext.Consumer>
   )
 }
 

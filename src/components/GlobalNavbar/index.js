@@ -22,6 +22,11 @@ const GlobalNavbar = () => (
         </Link>
       </li>
     </ul>
+
+    <div className="d-flex flex-row">
+      <input type="text" placeholder="Search" />
+      <button>Search</button>
+    </div>
   </nav>
 )
 
